@@ -41,7 +41,8 @@ if (navigator.geolocation)
     }
   );
 
-form.addEventListener('submit', function () {
+form.addEventListener('submit', function (e) {
+  e.preventDefault();
   // display marker
   console.log(mapEvent);
   const { lat, lng } = mapEvent.latlng;
