@@ -122,7 +122,10 @@ class App {
     if (type === 'running') {
       const cadence = +inputCadence.value;
       // check if data is valid
-      if (!validInputs(distance, duration, cadence))
+      if (
+        !validInputs(distance, duration, cadence) ||
+        !allPositive(distance, duration, cadence)
+      )
         return alert('Inputs have to be positive numbers');
     }
 
@@ -130,7 +133,10 @@ class App {
     if (type === 'cycling') {
       const elevation = +inputElevation.value;
       // check if data is valid
-      if (!validInputs(distance, duration, elevation))
+      if (
+        !validInputs(distance, duration, elevation) ||
+        !allPositive(distance, duration)
+      )
         return alert('Inputs have to be positive numbers');
     }
 
