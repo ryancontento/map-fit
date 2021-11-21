@@ -121,17 +121,16 @@ class App {
     if (type === 'running') {
       const cadence = +inputCadence.value;
       // check if data is valid
-      if (
-        !Number.isFinite(distance) ||
-        !Number.isFinite(duration) ||
-        !Number.isFinite(cadence)
-      )
+      if (!validInputs(distance, duration, cadence))
         return alert('Inputs have to be positive numbers');
     }
 
     // if workout is cycling, create cycling object
     if (type === 'cycling') {
       const elevation = +inputElevation.value;
+      // check if data is valid
+      if (!validInputs(distance, duration, elevation))
+        return alert('Inputs have to be positive numbers');
     }
 
     // add new object to workout array
