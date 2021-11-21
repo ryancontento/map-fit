@@ -130,6 +130,8 @@ class App {
         !allPositive(distance, duration, cadence)
       )
         return alert('Inputs have to be positive numbers');
+
+      workout = new Running([lat, lng], distance, duration, cadence);
     }
 
     // if workout is cycling, create cycling object
@@ -142,26 +144,15 @@ class App {
       )
         return alert('Inputs have to be positive numbers');
 
-      workout = new Running([lat, lng], distance, duration, cadence);
+      workout = new Cycling([lat, lng], distance, duration, elevation);
     }
 
     // add new object to workout array
     this.#workouts.push(workout);
+    console.log(workout);
 
     // render workout on map as marker
-    L.marker([lat, lng])
-      .addTo(this.#map)
-      .bindPopup(
-        L.popup({
-          maxWidth: 250,
-          minWidth: 100,
-          autoClose: false,
-          closeOnClick: false,
-          className: 'running-popup',
-        })
-      )
-      .setPopupContent('Workout')
-      .openPopup();
+    this.renderWorkoutMarker(workout)
 
     // render workout on list
 
@@ -174,6 +165,22 @@ class App {
       inputElevation.value =
         '';
   }
+}
+
+renderWorkoutMarker(workout) {
+  L.marker([lat, lng])
+      .addTo(this.#map)
+      .bindPopup(
+        L.popup({
+          maxWidth: 250,
+          minWidth: 100,
+          autoClose: false,
+          closeOnClick: false,
+          className: `${type}-popup`,
+        })
+      )
+      .setPopupContent(workout.distance)
+      .openPopup();
 }
 
 const app = new App();
