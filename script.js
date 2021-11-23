@@ -159,6 +159,7 @@ class App {
     this._renderWorkoutMarker(workout);
 
     // render workout on list
+    this._renderWorkout(workout);
 
     // hide form + clear input fields
 
@@ -185,6 +186,8 @@ class App {
       .setPopupContent('workout')
       .openPopup();
   }
+
+  _renderWorkout(workout) {}
 }
 
 const app = new App();
