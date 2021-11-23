@@ -21,6 +21,7 @@ class Workout {
   _setDescription() {
     // prettier-ignore
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    this.description =
   }
 }
 
@@ -191,7 +192,7 @@ class App {
 
   _renderWorkout(workout) {
     const html = `
-    <li class="workout workout--${workout.running}" data-id="${workout.id}">
+    <li class="workout workout--${workout.type}" data-id="${workout.id}">
           <h2 class="workout__title">Running on April 14</h2>
           <div class="workout__details">
             <span class="workout__icon">${
