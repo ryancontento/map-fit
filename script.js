@@ -1,8 +1,5 @@
 'use strict';
 
-// prettier-ignore
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
 const form = document.querySelector('.form');
 const containerWorkouts = document.querySelector('.workouts');
 const inputType = document.querySelector('.form__input--type');
@@ -19,6 +16,11 @@ class Workout {
     this.coords = coords; // [lat, lng]
     this.distance = distance; // in miles
     this.duration = duration; // in min
+  }
+
+  _setDescription() {
+    // prettier-ignore
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   }
 }
 
