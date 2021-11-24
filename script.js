@@ -200,7 +200,7 @@ class App {
           <h2 class="workout__title">${workout.description}</h2>
           <div class="workout__details">
             <span class="workout__icon">${
-              workout.type === 'running' ? 'RUN' : 'CYCLE'
+              workout.type === '🚴🏻' ? '' : '🏃🏻'
             }</span>
             <span class="workout__value">${workout.distance}</span>
             <span class="workout__unit">km</span>
@@ -241,6 +241,8 @@ class App {
     </div>
   </li> 
      `;
+
+    form.insertAdjacentHTML('afterend', html);
   }
 }
 
