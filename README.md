@@ -6,4 +6,4 @@
 
 - user login/authentication
 - save workout data
-- add one more workout type
+- add one more workout type (walk)
