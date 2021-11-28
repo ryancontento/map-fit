@@ -35,6 +35,11 @@ body {
 }
 
 /* GENERAL */
+.title {
+  text-align: center;
+  text-transform: uppercase;
+}
+
 a:link,
 a:visited {
   color: var(--color-brand--1);
