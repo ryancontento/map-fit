@@ -228,7 +228,7 @@ class App {
               workout.type === "🚴🏻" ? "" : "🏃🏻"
             }</span>
             <span class="workout__value">${workout.distance}</span>
-            <span class="workout__unit">km</span>
+            <span class="workout__unit">mi</span>
           </div>
           <div class="workout__details">
             <span class="workout__icon">⏱</span>
@@ -242,7 +242,7 @@ class App {
       <div class="workout__details">
         <span class="workout__icon">⚡️</span>
        <span class="workout__value">${workout.pace.toFixed(1)}</span>
-       <span class="workout__unit">min/km</span>
+       <span class="workout__unit">min/mi</span>
      </div>
      <div class="workout__details">
        <span class="workout__icon">🦶🏼</span>
@@ -257,12 +257,12 @@ class App {
      <div class="workout__details">
       <span class="workout__icon">⚡️</span>
       <span class="workout__value">${workout.speed.toFixed(1)}</span>
-      <span class="workout__unit">km/h</span>
+      <span class="workout__unit">mi/h</span>
     </div>
     <div class="workout__details">
       <span class="workout__icon">⛰</span>
       <span class="workout__value">${workout.elevationGain}</span>
-      <span class="workout__unit">m</span>
+      <span class="workout__unit">feet</span>
     </div>
   </li> 
      `;
@@ -302,6 +302,10 @@ class App {
     this.#workouts.forEach((work) => {
       this._renderWorkout(work);
     });
+  }
+  reset() {
+    localStorage.removeItem("workouts");
+    location.reload();
   }
 }
 
