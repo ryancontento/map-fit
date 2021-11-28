@@ -1,8 +1,8 @@
 # Map Fit Workout Tracker
 
-##MVP will just be saving workout data locally, after will add:
+## How to run
 
-###add backend to:
+### Next Features:
 
 - user login/authentication
 - save workout data
