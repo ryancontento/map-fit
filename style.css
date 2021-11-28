@@ -4,7 +4,7 @@
 
   --color-dark--1: #27212b;
   --color-dark--2: #575264;
-  --color-light--1: #aaa;
+  --color-light--1: rgb(189, 189, 189);
   --color-light--2: #ececec;
   --color-light--3: rgb(214, 222, 224);
 }
@@ -38,6 +38,10 @@ body {
 .title {
   text-align: center;
   text-transform: uppercase;
+  font-family: inherit;
+  color: var(--color-light--1);
+  font-size: 4rem;
+  font-weight: 400;
 }
 
 a:link,
@@ -52,12 +56,6 @@ a:visited {
   padding: 3rem 5rem 4rem 5rem;
   display: flex;
   flex-direction: column;
-}
-
-.logo {
-  height: 5.2rem;
-  align-self: center;
-  margin-bottom: 4rem;
 }
 
 .workouts {
