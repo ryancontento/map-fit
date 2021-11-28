@@ -1,16 +1,16 @@
-'use strict';
+"use strict";
 
-const form = document.querySelector('.form');
-const containerWorkouts = document.querySelector('.workouts');
-const inputType = document.querySelector('.form__input--type');
-const inputDistance = document.querySelector('.form__input--distance');
-const inputDuration = document.querySelector('.form__input--duration');
-const inputCadence = document.querySelector('.form__input--cadence');
-const inputElevation = document.querySelector('.form__input--elevation');
+const form = document.querySelector(".form");
+const containerWorkouts = document.querySelector(".workouts");
+const inputType = document.querySelector(".form__input--type");
+const inputDistance = document.querySelector(".form__input--distance");
+const inputDuration = document.querySelector(".form__input--duration");
+const inputCadence = document.querySelector(".form__input--cadence");
+const inputElevation = document.querySelector(".form__input--elevation");
 
 class Workout {
   date = new Date();
-  id = (Date.now() + '').slice(-10);
+  id = (Date.now() + "").slice(-10);
 
   constructor(coords, distance, duration) {
     this.coords = coords; // [lat, lng]
@@ -28,7 +28,7 @@ class Workout {
 }
 
 class Running extends Workout {
-  type = 'running';
+  type = "running";
 
   constructor(coords, distance, duration, cadence) {
     super(coords, distance, duration);
@@ -44,7 +44,7 @@ class Running extends Workout {
   }
 }
 class Cycling extends Workout {
-  type = 'cycling';
+  type = "cycling";
 
   constructor(coords, distance, duration, elevationGain) {
     super(coords, distance, duration);
@@ -75,8 +75,8 @@ class App {
 
   constructor() {
     this._getPosition();
-    form.addEventListener('submit', this._newWorkout.bind(this));
-    inputType.addEventListener('change', this._toggleElevationField);
+    form.addEventListener("submit", this._newWorkout.bind(this));
+    inputType.addEventListener("change", this._toggleElevationField);
   }
 
   _getPosition() {
@@ -84,7 +84,7 @@ class App {
       navigator.geolocation.getCurrentPosition(
         this._loadMap.bind(this),
         function () {
-          alert('Could not get your position');
+          alert("Could not get your position");
         }
       );
   }
@@ -96,20 +96,20 @@ class App {
 
     const coords = [latitude, longitude];
 
-    this.#map = L.map('map').setView(coords, 13);
+    this.#map = L.map("map").setView(coords, 13);
 
-    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+    L.tileLayer("https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(this.#map);
 
     // handling clicks on map
-    this.#map.on('click', this._showForm.bind(this));
+    this.#map.on("click", this._showForm.bind(this));
   }
 
   _showForm(mapE) {
     this.#mapEvent = mapE;
-    form.classList.remove('hidden');
+    form.classList.remove("hidden");
     inputDistance.focus();
   }
 
@@ -119,21 +119,21 @@ class App {
       inputDuration.value =
       inputCadence.value =
       inputElevation.value =
-        '';
-    form.style.display = 'none';
-    form.classList.add('hidden');
-    setTimeout(() => (form.style.display = 'grid'), 1000);
+        "";
+    form.style.display = "none";
+    form.classList.add("hidden");
+    setTimeout(() => (form.style.display = "grid"), 1000);
   }
 
   _toggleElevationField() {
-    inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
-    inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
+    inputElevation.closest(".form__row").classList.toggle("form__row--hidden");
+    inputCadence.closest(".form__row").classList.toggle("form__row--hidden");
   }
 
   _newWorkout(e) {
     const validInputs = (...inputs) =>
-      inputs.every(inp => Number.isFinite(inp));
-    const allPositive = (...inputs) => inputs.every(inp => inp > 0);
+      inputs.every((inp) => Number.isFinite(inp));
+    const allPositive = (...inputs) => inputs.every((inp) => inp > 0);
 
     e.preventDefault();
 
@@ -145,27 +145,27 @@ class App {
     let workout;
 
     // if workout is running, create running object
-    if (type === 'running') {
+    if (type === "running") {
       const cadence = +inputCadence.value;
       // check if data is valid
       if (
         !validInputs(distance, duration, cadence) ||
         !allPositive(distance, duration, cadence)
       )
-        return alert('Inputs have to be positive numbers');
+        return alert("Inputs have to be positive numbers");
 
       workout = new Running([lat, lng], distance, duration, cadence);
     }
 
     // if workout is cycling, create cycling object
-    if (type === 'cycling') {
+    if (type === "cycling") {
       const elevation = +inputElevation.value;
       // check if data is valid
       if (
         !validInputs(distance, duration, elevation) ||
         !allPositive(distance, duration)
       )
-        return alert('Inputs have to be positive numbers');
+        return alert("Inputs have to be positive numbers");
 
       workout = new Cycling([lat, lng], distance, duration, elevation);
     }
@@ -199,7 +199,7 @@ class App {
         })
       )
       .setPopupContent(
-        `${workout.type === '🚴🏻' ? '' : '🏃🏻'} ${workout.description}`
+        `${workout.type === "🚴🏻" ? "" : "🏃🏻"} ${workout.description}`
       )
       .openPopup();
   }
@@ -210,7 +210,7 @@ class App {
           <h2 class="workout__title">${workout.description}</h2>
           <div class="workout__details">
             <span class="workout__icon">${
-              workout.type === '🚴🏻' ? '' : '🏃🏻'
+              workout.type === "🚴🏻" ? "" : "🏃🏻"
             }</span>
             <span class="workout__value">${workout.distance}</span>
             <span class="workout__unit">km</span>
@@ -222,7 +222,7 @@ class App {
           </div>
     `;
 
-    if (workout.type === 'running')
+    if (workout.type === "running")
       html += `
       <div class="workout__details">
         <span class="workout__icon">⚡️</span>
@@ -237,7 +237,7 @@ class App {
   </li>
     `;
 
-    if (workout.type === 'cycling')
+    if (workout.type === "cycling")
       html += `
      <div class="workout__details">
       <span class="workout__icon">⚡️</span>
@@ -252,7 +252,7 @@ class App {
   </li> 
      `;
 
-    form.insertAdjacentHTML('afterend', html);
+    form.insertAdjacentHTML("afterend", html);
   }
 }
 
